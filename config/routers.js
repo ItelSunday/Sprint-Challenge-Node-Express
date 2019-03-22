@@ -1,4 +1,4 @@
-const projectRouters = require('./projectRouters');
+const projectRouters = require('../project/projectRouter');
 
 const project = server => {
     server.use('/api/project', projectRouters);

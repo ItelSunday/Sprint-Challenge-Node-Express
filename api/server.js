@@ -1,12 +1,13 @@
 const express = require('express');
-
-const routes = require('../data/routers/routes')
-const middleware = require('./middleware')
 const server = express();
 
-middleware(server)
+const configureMiddleware = require('../config/middleware');
+const routers = require('../config/routers');
 
-routes.projectRouters(server);
+// middleware
+configureMiddleware(server);
 
+// routers
+routers.projectRouters(server);
 
 module.exports = server;

@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const db = require('../helpers/projectModel');
+const db = require('../data/helpers/projectModel');
 
 router.get('/', (req, res) => {
-        db
+        projectDb
         .get()
         .then(project => {
             console.log(project);
