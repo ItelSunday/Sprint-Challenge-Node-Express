@@ -3,15 +3,16 @@ const router = express.Router();
 
 const db = require('../helpers/projectModel');
 
-router.get('/:id', (req, res) => {
-    const id = req.params.id;
+router.get('/', (req, res) => {
         db
-        .get(id)
+        .get()
         .then(project => {
             console.log(project);
             res.status(200).json(project);
         })
-        .catch();
+        .catch(() => {
+            res.status(404).json({ message: 'ID not found' });
+        })
 });
 
 module.exports = router;

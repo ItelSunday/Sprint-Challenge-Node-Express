@@ -1,18 +1,12 @@
 const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const logger = require('morgan');
-const projectRouters = require('../data/routers/projectRouters')
 
+const routes = require('../data/routers/routes')
+const middleware = require('./middleware')
 const server = express();
 
-server.use(express.json());
-server.use(helmet());
-server.use(cors());
-server.use(logger("combined"));
+middleware(server)
 
-
-
+routes.projectRouters(server);
 
 
 module.exports = server;
