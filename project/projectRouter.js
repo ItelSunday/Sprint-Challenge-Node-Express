@@ -33,6 +33,18 @@ router.get('/:id', (req, res) => {
 
 });
 
+// GET() projectActions 
+router.get('/:id/actions', (req, res) => {
+    const { id } = req.params;
+
+    projectDb.getProjectActions(id)
+    .then(actions => {
+        res.status(200).json(actions); // POSTMANerror: .json(project)
+    })
+    .catch(err => {
+        res.status(500).json({ message: "500.Error:Something went wrong", err});
+    });
+});
 
 // CREATE new project - insert() 
 router.post('/', (req, res) => {
@@ -82,18 +94,8 @@ router.delete('/:id', (req, res) => {
 });
 
 
-// GET() projectActions 
-router.get('/:id/actions', (_, res) => {
-    const { id } = req.params;
 
-    projectDb.getProjectActions(id)
-    .then(actions => {
-        res.status(200).json(actions); // POSTMANerror: .json(project)
-    })
-    .catch(err => {
-        res.status(500).json({ message: "500.Error:Something went wrong", err});
-    });
-});
+
 
 
 module.exports = router;
